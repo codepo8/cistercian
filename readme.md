@@ -27,3 +27,50 @@ For example `node toCistercian,js 161` results in the following SVG:
     <line x1="100" y1="160" x2="60" y2="160" stroke="#000" stroke-linecap="square" stroke-width="4"/>
 </svg>
 ```
+
+You can also use this in a browser as shown in the [simple.html]() example: 
+
+```html
+<output></output>
+<script src="toCistercian.js">
+</script>
+<script>
+    const svg = toCistercian(1312);
+    document.querySelector('output').innerHTML = svg;
+</script>
+```
+## cistercian.js - convert to svg/png/canvas with customisation
+
+The generator uses the more detailed [cistercian.js](cistercian.js) version, which allows you to generate numerals in various versions and formats.
+
+Usage is in JavaScript and a browser environment.
+
+```javascript
+<script src="cistercian.js"></script>
+<script>
+    const converter = new Cistercian();
+    converter.rendernumber(1312);
+</script>
+```
+
+This would add an `output` element to the body and render the numeral with a text representation and a button to remove it again.
+You can configure it to change the look and feel and what gets rendered by calling the `configure` method. See the [advanced example]() for that.
+
+If you want, for example, to render the numeral inside the element with the ID `mycanvas` as SVG with a `width` of `400`, lines 10 pixels thick and in the colour `peachpuff` and without any text display or button to delete, you can do the following:
+
+```html
+<div id="mycanvas"></div>
+```
+
+```javascript
+myConverter.configure({
+    renderer: 'svg',
+    canvas: { width: 400 },
+    stroke: { colour: 'peachpuff', width: 10 },
+    addtext: false,
+    addinteraction: false,
+    outputcontainer: document.getElementById('mycanvas')
+});
+myConverter.rendernumber(1312);
+```
+Enjoy! 
