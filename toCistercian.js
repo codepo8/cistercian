@@ -29,10 +29,9 @@
         9000: [[1,13],[13,12],[12,9],[9,10]]
     };
     const drawline = (x, y, x1, y1) => {
-        return `<line x1="${x}" y1="${y}" x2="${x1}" y2="${y1}" 
-        stroke="${config.stroke.colour}" stroke-linecap="square" stroke-width="${config.stroke.width}"/>`;
+        return `<line x1="${x}" y1="${y}" x2="${x1}" y2="${y1}" stroke="${config.stroke.colour}" stroke-linecap="square" stroke-width="${config.stroke.width}"/>`;
     };
-    const toCistercian = (number) => {
+    const toCistercian = (number,x,y) => {
         let svg = `<svg width="${config.canvas.width}" height="${config.canvas.width * 1.5}" xmlns="http://www.w3.org/2000/svg"><title>Cistercian numeral for ${number}</title>`;
         if (number < 0 || number > 9999) return;
         let factor = config.canvas.width / 60;
@@ -85,7 +84,7 @@
             console.error('Usage: node toCistercian.js <number>');
             process.exit(1);
         }
-        const svg = rendernumber(n);
+        const svg = toCistercian(n);
         if (!svg) {
             console.error('Number must be between 1 and 9999');
             process.exit(1);
